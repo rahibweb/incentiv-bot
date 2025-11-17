@@ -14,9 +14,9 @@
 
 ## ✨ About Me
 
-Hi, I'm **RAHIBWEB** - a Web2 & Web3 developer and automation specialist focused on building efficient tools for Web3 ecosystems.
+I'm an **Angular** and **Web3 Developer** specializing in blockchain applications, smart contracts, and decentralized technologies.
 
-I create open-source bots and utilities to help the crypto community participate in testnets, airdrops, and blockchain projects more effectively. My tools emphasize reliability, security, and ease of use.
+I create **open-source tools** and utilities to help developers and communities interact with blockchain networks more effectively. My projects emphasize **reliability**, **security**, and **ease of use**.
 
 **What I do:**
 - 🔧 Develop automation tools for blockchain testnets
