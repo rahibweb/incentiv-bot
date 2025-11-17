@@ -1,0 +1,75 @@
+SETTINGS:
+  THREADS: 10                                # Number of concurrent threads
+  ATTEMPTS: 5                                # API retry attempts
+  SHUFFLE_WALLETS: false                     # Shuffle accounts before start
+  ACCOUNTS_RANGE: [0, 0]                     # Account range [start, end] (0,0 = all)
+  EXACT_ACCOUNTS_TO_USE: []                  # Specific account numbers [1, 3, 5]
+
+  # Delays (seconds)
+  RANDOM_PAUSE_BETWEEN_ACCOUNTS: [5, 20]     # Between accounts
+  RANDOM_PAUSE_BETWEEN_ACTIONS: [1, 5]       # Between actions
+  PAUSE_BETWEEN_SWAPS: [3, 8]                # Between swaps
+  PAUSE_BETWEEN_ATTEMPTS: [5, 8]             # Between retry attempts
+  RANDOM_INITIALIZATION_PAUSE: [5, 10]       # Initial pause
+
+  # Nonce check settings (contract deployment)
+  NONCE_CHECK_TIMEOUT: 12                    # Timeout per attempt (auto x2 with proxy)
+  NONCE_CHECK_ATTEMPTS_BEFORE_DEPLOY: 1      # Attempts before deploy
+  NONCE_CHECK_INITIAL_WAIT_AFTER_DEPLOY: 10  # Wait after deploy (seconds)
+  NONCE_CHECK_ATTEMPTS_AFTER_DEPLOY: 4       # Attempts after deploy
+  NONCE_CHECK_PROGRESSIVE_DELAY: 2           # Progressive delay base (3, 5, 7, 9...)
+
+CAPTCHA:
+  PROVIDER: "solvium"                        # Provider: solvium or 2captcha
+  SOLVIUM_KEY: ""
+  CAPTCHA_2CAPTCHA_KEY: ""
+
+# Transaction count ranges (randomized per account)
+# Each transaction = 1 point
+ACTIONS_COUNT:
+  ADD_CONTACTS: [2, 3]                       # Min-Max contacts to add
+  TRANSFERS: [7, 20]                         # Min-Max transfers
+  SWAPS: [6, 20]                             # Min-Max swap pairs
+  BUNDLE_ACTIONS: [10, 20]                   # Min-Max bundle actions
+  UNIFIED_TOKEN_GAS: [3, 6]                  # Min-Max ERC20 gas transactions
+
+# Examples:
+# [2, 5] = random from 2 to 5 per account
+# [3, 3] = exactly 3 for all accounts
+# 5      = exactly 5 (old format, still works)
+
+TRANSFER:
+  TCENT_TRANSFER_AMOUNT: [0.15, 0.25]        # Min-Max TCENT per transfer
+  SMPL_TRANSFER_AMOUNT: [0.005, 0.015]       # Min-Max SMPL per transfer
+  BULL_TRANSFER_AMOUNT: [0.005, 0.015]       # Min-Max BULL per transfer
+  FLIP_TRANSFER_AMOUNT: [0.005, 0.015]       # Min-Max FLIP per transfer
+
+SWAP:
+  TCENT_SWAP_AMOUNT: [0.008, 0.012]          # Min-Max TCENT per swap
+  SMPL_SWAP_AMOUNT: [0.008, 0.012]           # Min-Max SMPL per swap
+  BULL_SWAP_AMOUNT: [0.008, 0.012]           # Min-Max BULL per swap
+  FLIP_SWAP_AMOUNT: [0.008, 0.012]           # Min-Max FLIP per swap
+
+BUNDLE:
+  BUNDLE_ACTION_AMOUNT: [0.0008, 0.0172]     # Min-Max per bundle action
+
+# UnifiedToken Gas - Pay gas fees with ERC20 tokens
+# For "UnifiedToken" badge achievement
+UNIFIED_TOKEN_GAS:
+  ENABLED: false                             # Enable feature
+  MIN_TOKEN_BALANCE: 0.01                    # Min token balance for gas
+  TRANSFER_AMOUNT: [0.001, 0.005]            # Min-Max TCENT transfer amount
+  GAS_TOKENS: ["SMPL", "BULL", "FLIP"]       # Tokens available for gas payment
+  RANDOMIZE_TOKEN: true                      # Random token selection
+
+# How it works:
+# 1. Bot selects token (SMPL/BULL/FLIP) for gas payment
+# 2. Checks sufficient token balance
+# 3. Executes TCENT transfer, pays gas in selected token
+# 4. Auto-fallback to native TCENT on error or insufficient balance
+#
+# Requirements:
+# - Have SMPL, BULL, and/or FLIP tokens in balance
+# - Minimum 0.01 token for gas usage
+#
+# Menu option: Bot Action Menu → "UnifiedToken Gas (ERC20 Gas)"

@@ -1,0 +1,14 @@
+web3>=6.0.0
+eth-abi>=4.0.0
+eth-utils>=2.0.0
+eth-account>=0.10.0
+python-dotenv>=1.0.0
+aiohttp>=3.9.0
+aiohttp-socks>=0.8.0
+fake-useragent>=1.4.0
+colorama>=0.4.6
+pytz>=2023.3
+httpx>=0.25.0
+pyyaml>=6.0
+toml>=0.10.2
+certifi
